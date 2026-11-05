@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPT SHOP | فروشگاه پاورپوینت</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Tahoma,Arial;
+ background:#f3f7ff;
+ color:#172b4d;
+}
+header{
+ background:#0755c9;
+ color:white;
+ padding:22px 15px;
+ text-align:center;
+}
+header h1{margin:0;font-size:30px}
+header p{margin:10px 0 0}
+nav{
+ background:white;
+ padding:15px;
+ text-align:center;
+ box-shadow:0 2px 8px #ddd;
+}
+nav a{
+ color:#0755c9;
+ text-decoration:none;
+ margin:0 10px;
+ font-weight:bold;
+}
+.hero{
+ margin:25px auto;
+ max-width:950px;
+ background:linear-gradient(120deg,#0755c9,#42a5ff);
+ color:white;
+ padding:45px 20px;
+ text-align:center;
+ border-radius:18px;
+}
+.hero h2{font-size:28px}
+.search{
+ display:block;
+ width:90%;
+ max-width:500px;
+ margin:20px auto;
+ padding:14px;
+ border:2px solid #c9dcff;
+ border-radius:12px;
+ font-size:16px;
+}
+.products{
+ max-width:1000px;
+ margin:25px auto;
+ padding:10px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:18px;
+}
+.card{
+ background:white;
+ padding:20px;
+ border-radius:15px;
+ text-align:center;
+ box-shadow:0 3px 12px #dce6f5;
+}
+.card .pic{font-size:55px}
+.card h3{color:#0755c9}
+.price{font-weight:bold;color:#16834a}
+button{
+ background:#0755c9;
+ color:white;
+ border:0;
+ padding:12px 20px;
+ border-radius:9px;
+ cursor:pointer;
+ font-size:15px;
+}
+button:hover{background:#003b91}
+.cart{
+ max-width:900px;
+ margin:25px auto;
+ background:white;
+ padding:20px;
+ border-radius:15px;
+}
+footer{
+ background:#063b87;
+ color:white;
+ text-align:center;
+ padding:25px;
+ margin-top:40px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>💙 PPT SHOP</h1>
+<p>فروشگاه آنلاین پاورپوینت</p>
+</header>
+
+<nav>
+<a href="#home">خانه</a>
+<a href="#products">محصولات</a>
+<a href="#cart">سبد خرید</a>
+</nav>
+
+<section class="hero" id="home">
+<h2>به دنیای پاورپوینت خوش آمدید!</h2>
+<p>پاورپوینت‌های زیبا و حرفه‌ای را اینجا پیدا کن.</p>
+</section>
+
+<input class="search" id="search"
+placeholder="🔍 جست‌وجوی پاورپوینت..."
+oninput="searchProducts()">
+
+<h2 style="text-align:center" id="products">📚 محصولات فروشگاه</h2>
+
+<div class="products" id="productList">
+
+<div class="card">
+<div class="pic">📘</div>
+<h3>پاورپوینت علوم</h3>
+<p>ارائه زیبا برای درس علوم</p>
+<p class="price">قیمت: ۳۰ هزار تومان</p>
+<button onclick="addToCart('پاورپوینت علوم')">افزودن به سبد</button>
+</div>
+
+<div class="card">
+<div class="pic">📐</div>
+<h3>پاورپوینت ریاضی</h3>
+<p>آموزش تصویری ریاضی</p>
+<p class="price">قیمت: ۲۵ هزار تومان</p>
+<button onclick="addToCart('پاورپوینت ریاضی')">افزودن به سبد</button>
+</div>
+
+<div class="card">
+<div class="pic">🌍</div>
+<h3>پاورپوینت مطالعات</h3>
+<p>ارائه جذاب مطالعات اجتماعی</p>
+<p class="price">قیمت: ۳۵ هزار تومان</p>
+<button onclick="addToCart('پاورپوینت مطالعات')">افزودن به سبد</button>
+</div>
+
+</div>
+
+<section class="cart" id="cart">
+<h2>🛒 سبد خرید</h2>
+<ul id="cartItems"></ul>
+<p id="count">تعداد محصولات: ۰</p>
+<button onclick="clearCart()">خالی کردن سبد</button>
+</section>
+
+<footer>
+<h3>PPT SHOP 💙</h3>
+<p>فروشگاه آنلاین پاورپوینت</p>
+<p>© 2026 PPT SHOP</p>
+</footer>
+
+<script>
+let cart=[];
+
+function addToCart(name){
+ cart.push(name);
+ showCart();
+ alert('محصول به سبد خرید اضافه شد!');
+}
+
+function showCart(){
+ let list=document.getElementById('cartItems');
+ list.innerHTML='';
+ cart.forEach(item=>{
+  let li=document.createElement('li');
+  li.textContent=item;
+  list.appendChild(li);
+ });
+ document.getElementById('count').textContent=
+ 'تعداد محصولات: '+cart.length;
+}
+
+function clearCart(){
+ cart=[];
+ showCart();
+}
+
+function searchProducts(){
+ let value=document.getElementById('search').value;
+ document.querySelectorAll('.card').forEach(card=>{
+  card.style.display=
+  card.innerText.includes(value)?'block':'none';
+ });
+}
+</script>
+
+</body>
+</html>
